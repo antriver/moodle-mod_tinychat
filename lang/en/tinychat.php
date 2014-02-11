@@ -36,3 +36,7 @@ $string['chaturl_help'] = 'Enter a URL for your chat room (tinychat.com/yoururl)
 $string['tinychat'] = 'Tinychat';
 $string['pluginadministration'] = 'Tinychat Administration';
 $string['pluginname'] = 'Tinychat';
+
+//Capabilities
+$string['tinychat:view'] = 'View (join) a chat';
+$string['tinychat:addinstance'] = 'Add a chat to a course';
