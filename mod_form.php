@@ -62,7 +62,7 @@ class mod_tinychat_mod_form extends moodleform_mod {
         $this->add_intro_editor();
 
         $mform->addElement('text', 'chaturl', get_string('chaturl', 'tinychat'), array('size'=>'100'));
-        $mform->addHelpButton('name', 'chaturl', 'tinychat');
+        $mform->addHelpButton('chaturl', 'chaturl', 'tinychat');
 
         //-------------------------------------------------------------------------------
         // Add standard elements, common to all modules

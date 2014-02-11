@@ -68,13 +68,22 @@ function tinychat_supports($feature) {
  */
 function tinychat_add_instance(stdClass $tinychat, mod_tinychat_mod_form $mform = null) {
     global $DB, $CFG;
-    
-    //Generate a hopefully unique chat room url
-    $chatURL ='mdl-' . substr(md5($CFG->siteidentifier), 0, 10) . '-' . time();
-    $tinychat->chaturl = $chatURL;
-    
+
+    if (empty($tinychat->chaturl)) {
+        $tinychat->chaturl = tinychat_generate_url();
+     }
+
     $tinychat->timecreated = time();
     return $DB->insert_record('tinychat', $tinychat);
+}
+
+/**
+ * //Generate a hopefully unique chat room URL
+ * @return string
+ */
+function tinychat_generate_url() {
+    global $CFG;
+    return 'mdl-' . substr(md5($CFG->siteidentifier), 0, 10) . '-' . time();
 }
 
 /**
@@ -94,7 +103,9 @@ function tinychat_update_instance(stdClass $tinychat, mod_tinychat_mod_form $mfo
     $tinychat->timemodified = time();
     $tinychat->id = $tinychat->instance;
 
-    # You may have to add extra stuff in here #
+    if (empty($tinychat->chaturl)) {
+        $tinychat->chaturl = tinychat_generate_url();
+     }
 
     return $DB->update_record('tinychat', $tinychat);
 }
